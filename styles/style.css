@@ -1,0 +1,53 @@
+
+:root {
+    --base: #E5E8F5;
+    --secundario: #0A3871;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: var(--base);
+}
+
+header {
+    background: var(--secundario);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    width: 75px;
+    height: 75px;
+}
+
+.titulo {
+    color: var(--base);
+    display: inline;
+    margin: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.col {
+    display: inline-flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+canvas {
+    color: var(--base);
+    border: var(--base) dashed 2px;
+    padding:15px;
+}
