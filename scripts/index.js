@@ -24,7 +24,15 @@ btnNewGame.onclick = () => {
 
 const getKeyPressed = (e) => {
     if( !word ) { return }
-    hangman.commpareLetter( e.key );
+    let result = hangman.commpareLetter( e.key );
+    
+    if( result ) {
+        let dashes = document.getElementsByClassName('dashes');
+        result.forEach( index => {
+            dashes[index].innerHTML = e.key;
+        } );
+
+    } 
 }
 
 const showChoosenWord = ( choosenWord ) => {
