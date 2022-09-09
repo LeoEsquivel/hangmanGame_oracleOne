@@ -14,15 +14,25 @@
     </header>
     
     <div class="container">
-        <div class="row">
             <div class="col">
-                <canvas id="hangman" width="960px" height="450px">
+                <canvas id="canvas">
                     Su navegador no soporta CANVAS.
                 </canvas>
+                
+                <div id="word">
+
+                </div>
+                <div id="letter-container" class="letter-container">
+                    <kbd>D</kbd>
+                </div>
+    
+                <div class="row buttons">
+                    <button id="btnNewGame" class="btn btn-blue">Nuevo juego</button>
+                    <button id="btnSurrender" class="btn btn-white">Rendirse</button>
+                </div>
             </div>
-        </div>
     </div>
 
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
