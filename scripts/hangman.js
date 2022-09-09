@@ -34,7 +34,7 @@ export class HangmanGame {
         
         keyPressed = keyPressed.toUpperCase();
         if( this.#keyPressed.includes( keyPressed )){
-            return 'Ya esta'
+            return false
         }
 
         this.setKeyPressed( keyPressed );
@@ -42,8 +42,12 @@ export class HangmanGame {
             this.#mistakes++;
             return
         }
-
-        return keyPressed
+        
+        let indexs = [];
+        this.#letters.forEach( ( letter, index ) => {
+            if( letter === keyPressed ) { indexs.push( index ); }
+        } );
+        return indexs
     }
 
 
