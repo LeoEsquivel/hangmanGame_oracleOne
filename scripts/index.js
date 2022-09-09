@@ -1,19 +1,30 @@
+import { HangmanGame } from './hangman.js'
 import { Words } from './Words.js'
 
+//HTML Elements
 const wordContainer = document.getElementById('word');
 const lettersContainer = document.getElementById('letter-container');
 const btnNewGame = document.getElementById('btnNewGame');
 const btnSurrender = document.getElementById('btnSurrender');
 const canvas = document.getElementById('canvas');
 
+//Objects 
 const words = new Words();
+const hangman = new HangmanGame();
 
-let mistakes = 0;
+let word = ''
 
 btnNewGame.onclick = () => {
     cleanAll();
-    let word = words.getWord().toUpperCase();
+    word = words.getWord().toUpperCase();
+
+    hangman.setLetters( word );
     showChoosenWord( word );
+}
+
+const getKeyPressed = (e) => {
+    if( !word ) { return }
+    hangman.commpareLetter( e.key );
 }
 
 const showChoosenWord = ( choosenWord ) => {
@@ -24,5 +35,7 @@ const showChoosenWord = ( choosenWord ) => {
 const cleanAll = () => {
     wordContainer.innerHTML = "";
     lettersContainer.innerHTML = "";
-
+    word = '';
 }
+
+window.addEventListener('keydown', getKeyPressed)
