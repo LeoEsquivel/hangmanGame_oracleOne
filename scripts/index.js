@@ -1,3 +1,4 @@
+import { DrawMan } from './drawMan.js';
 import { HangmanGame } from './hangman.js'
 import { Words } from './Words.js'
 
@@ -11,6 +12,7 @@ const canvas = document.getElementById('canvas');
 //Objects 
 const words = new Words();
 const hangman = new HangmanGame();
+const drawMan = new DrawMan(canvas);
 
 let word = ''
 
@@ -25,14 +27,30 @@ btnNewGame.onclick = () => {
 const getKeyPressed = (e) => {
     if( !word ) { return }
     let result = hangman.commpareLetter( e.key );
-    
-    if( result ) {
-        let dashes = document.getElementsByClassName('dashes');
-        result.forEach( index => {
-            dashes[index].innerHTML = e.key;
-        } );
 
-    } 
+    if ( !result ) {
+        drawMan.draw( hangman.Mistakes );
+    } else {
+        updateDashes( result, e.key );
+    }
+    updatePressedKey( e.key );
+}
+
+const updatePressedKey = ( keyPressed ) => {
+    lettersContainer.innerHTML += `<kbd>${keyPressed.toUpperCase()}</kbd>`;
+}
+
+const updateDashes = ( result, keyPressed ) => {
+    let dashes = document.getElementsByClassName('dashes');
+    const { win, indices } = result;
+
+    indices.forEach( index => {
+        dashes[index].innerHTML = keyPressed;
+    } );
+    
+    if ( win ) {
+        alert('Ganaste');
+    }
 }
 
 const showChoosenWord = ( choosenWord ) => {
