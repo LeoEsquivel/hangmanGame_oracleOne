@@ -1,6 +1,9 @@
+import { DrawMan } from './drawMan.js';
+
 export class HangmanGame {
 
     #mistakes = 0;
+    #hits2win = 0;
     #keyPressed = [];
     #letters = [];
 
@@ -20,6 +23,7 @@ export class HangmanGame {
 
     setLetters( word ) {
         this.#letters = Array.from( word );
+        this.#hits2win = this.#letters.length;
     }
 
     get keyPressed() {
@@ -34,7 +38,7 @@ export class HangmanGame {
         
         keyPressed = keyPressed.toUpperCase();
         if( this.#keyPressed.includes( keyPressed )){
-            return false
+            return
         }
 
         this.setKeyPressed( keyPressed );
@@ -43,16 +47,29 @@ export class HangmanGame {
             return
         }
         
-        let indexs = [];
+        let indices = [];
         this.#letters.forEach( ( letter, index ) => {
-            if( letter === keyPressed ) { indexs.push( index ); }
+            if( letter === keyPressed ) { 
+                indices.push( index ); 
+                this.#hits2win--;
+            }
         } );
-        return indexs
+
+        if( this.#hits2win === 0 ) {
+            return {
+                win: true,
+                indices
+            }
+        }
+
+        return {
+            win: false,
+            indices
+        }
     }
 
-
-
     resetAll(){
+        this.#hits2win = 0;
         this.#mistakes = 0;
         this.#letters = [];
         this.#keyPressed = [];
