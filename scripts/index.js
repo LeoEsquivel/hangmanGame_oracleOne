@@ -33,11 +33,15 @@ const getKeyPressed = (e) => {
     } else {
         updateDashes( result, e.key );
     }
-    updatePressedKey( e.key );
+    updatePressedKey( e.key.toUpperCase() );
 }
 
 const updatePressedKey = ( keyPressed ) => {
+    for( let i=0; i < lettersContainer.children.length; i++) {
+        if ( lettersContainer.children[i].innerHTML === keyPressed ) { return }
+    }
     lettersContainer.innerHTML += `<kbd>${keyPressed.toUpperCase()}</kbd>`;
+
 }
 
 const updateDashes = ( result, keyPressed ) => {
@@ -59,6 +63,10 @@ const showChoosenWord = ( choosenWord ) => {
 }
 
 const cleanAll = () => {
+    hangman.resetAll();
+    drawMan.cleanCanvas();
+    // const context = canvas.getContext('2d');
+    // context.clearRect(0, 0, canvas.width, canvas.height);
     wordContainer.innerHTML = "";
     lettersContainer.innerHTML = "";
     word = '';
