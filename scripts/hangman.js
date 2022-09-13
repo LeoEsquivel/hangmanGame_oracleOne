@@ -7,6 +7,7 @@ export class HangmanGame {
     #keyPressed = [];
     #letters = [];
 
+    
     constructor(){ }
 
     get Mistakes() {
@@ -37,11 +38,14 @@ export class HangmanGame {
     commpareLetter( keyPressed ) {
         
         keyPressed = keyPressed.toUpperCase();
+        //Si la letra ya a sido presionada
         if( this.#keyPressed.includes( keyPressed )){
             return
         }
 
+        
         this.setKeyPressed( keyPressed );
+        //Si la letra no esta en la palabra
         if( !this.#letters.includes( keyPressed ) ) {
             this.#mistakes++;
             return

@@ -1,32 +1,27 @@
 export class DrawMan {
 
+    #canvas
     #context;
-    // #drawMan = { };
 
     constructor( canvas ) {
+        this.#canvas = canvas;
         this.#context = canvas.getContext('2d');
-        
-        // this.#drawMan = {
-        //     1: this.#drawHead(),
-        //     2: this.#drawBody(),
-        //     3: this.#drawLeftArm(),
-        //     4: this.#drawRightArm(),
-        //     5: this.#drawLeftLeg(),
-        //     6: this.#drawRightLeg()
-        // }
 
         this.#context.strokeStyle = '#000000';
         this.#context.lineWidth = 2;
         this.drawGarrow();
     }
 
+    cleanCanvas() {
+        this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
+        this.drawGarrow();
+    }
+
     drawGarrow() {
-        this.#context.clearRect(0, 0, this.#context.canvas.width, this.#context.canvas.height);
         this.#drawLine(10, 130, 130, 130);
         this.#drawLine(10, 10, 10, 131);
         this.#drawLine(10, 10, 70, 10);
         this.#drawLine(70, 10, 70, 20);
-
     }
 
     #drawLine( fromX, fromY, toX, toY ) {
