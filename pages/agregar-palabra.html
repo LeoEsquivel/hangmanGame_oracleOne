@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+    <header>
+        <img id="logo" src="../static/logo.png" alt="">
+        <h2 class="titulo">Juego del ahorcado</h2>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <input id="word"
+                        placeholder="Ingresa la palabra"></input> <br>
+    
+                <div class="row" style="justify-content: space-between;">
+                    <button id="add" 
+                            class="btn btn-iniciar">
+                                Agregar
+                    </button><br>
+                    <a href="../index.html">
+                        <button id="cancel"
+                                class="btn btn-agregar">
+                                    Cancelar
+                        </button>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/addWord.js"></script>
+</body>
+</html>
