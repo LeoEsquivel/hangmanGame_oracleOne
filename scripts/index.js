@@ -1,6 +1,7 @@
 import { DrawMan } from './drawMan.js';
-import { HangmanGame } from '../models/hangman.js'
-import { Words } from '../models/Words.js'
+import { HangmanGame } from '../models/hangman.js';
+import { Words } from '../models/Words.js';
+import { showPopup } from '../scripts/popup.js';
 
 //HTML Elements
 const wordContainer = document.getElementById('word');
@@ -17,6 +18,16 @@ const drawMan = new DrawMan(canvas);
 let word = ''
 
 btnNewGame.onclick = () => {
+    startGame();
+}
+
+btnSurrender.onclick = () => {
+    if(!word) { return }
+    showPopup('La palabra era', word);
+    cleanAll();
+}
+
+const startGame = () => {
     cleanAll();
     word = words.getWord().toUpperCase();
 
@@ -53,7 +64,7 @@ const updateDashes = ( result, keyPressed ) => {
     } );
     
     if ( win ) {
-        alert('Ganaste');
+        showPopup('FELIDADES', 'Ganaste');
     }
 }
 
@@ -65,11 +76,13 @@ const showChoosenWord = ( choosenWord ) => {
 const cleanAll = () => {
     hangman.resetAll();
     drawMan.cleanCanvas();
-    // const context = canvas.getContext('2d');
-    // context.clearRect(0, 0, canvas.width, canvas.height);
     wordContainer.innerHTML = "";
     lettersContainer.innerHTML = "";
     word = '';
 }
 
-window.addEventListener('keydown', getKeyPressed)
+window.onload = () => {
+    startGame();
+}
+
+window.addEventListener('keydown', getKeyPressed);
