@@ -17,7 +17,7 @@ export class Words {
         if( !word ) {
             return 'No se ha ingresado una palabra.'
         }
-        this.#words.push( word.toUppercase() );
+        this.#words.push( word.toUpperCase() );
     }
 
 }
