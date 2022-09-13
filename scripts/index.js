@@ -1,6 +1,6 @@
 import { DrawMan } from './drawMan.js';
-import { HangmanGame } from './hangman.js'
-import { Words } from './Words.js'
+import { HangmanGame } from '../models/hangman.js'
+import { Words } from '../models/Words.js'
 
 //HTML Elements
 const wordContainer = document.getElementById('word');
