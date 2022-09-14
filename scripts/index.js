@@ -25,6 +25,8 @@ btnSurrender.onclick = () => {
     if(!word) { return }
     showPopup('La palabra era', word);
     cleanAll();
+    btnSurrender.disabled = true;
+    btnNewGame.disabled = false;
 }
 
 const startGame = () => {
@@ -33,6 +35,8 @@ const startGame = () => {
 
     hangman.setLetters( word );
     showChoosenWord( word );
+    btnSurrender.disabled = false;
+    btnNewGame.disabled = true;
 }
 
 const getKeyPressed = (e) => {
